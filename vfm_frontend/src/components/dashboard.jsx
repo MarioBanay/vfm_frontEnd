@@ -1,16 +1,23 @@
-import React, {Component} from 'react';
-import AuthenticationService from './AuthenticationService.js';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Dashboard extends Component {
 
-
-    render(){
-        let authUsername = AuthenticationService.getLoggedInUserName();
-
-        return(
-            <div>Authenticated user is: {authUsername}</div>
+    render() {
+        return (
+            <>
+                <div>
+                    Authenticated user is: {this.props.loggedInUsername}
+                </div>
+            </>
         );
     }
 }
 
-export default Dashboard;
+const mapStateToProps = state => {
+    return {
+        loggedInUsername: state.auth.authenticatedUsername,
+    };
+};
+
+export default connect(mapStateToProps)(Dashboard);
