@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import Logout from './Logout';
 import PageNotFound from './PageNotFound';
 import Header from './Header';
+import Drivers from './Drivers';
 
 class VfmApp extends Component {
   render() {
@@ -19,6 +20,8 @@ class VfmApp extends Component {
               <Route path="/login" component={Login} />
               <AuthenticatedRoute path="/logout" component={Logout} />
               <AuthenticatedRoute path="/dashboard/:name" component={Dashboard} />
+              <AuthenticatedRoute path="/drivers/:name" component={Drivers} />
+              
 
               <Route component={PageNotFound} />
 
