@@ -13,8 +13,9 @@ class HeaderComponent extends Component {
                     <div><a href="https://github.com/MarioBanay" className="navbar-brand">VFMS</a></div>
                     <ul className="navbar-nav">
                     {this.props.isUserLoggedIn && <li><Link className="nav-link" to={`/dashboard/${this.props.authenticatedUsername}`}>Home</Link></li>}
-                    {this.props.isUserLoggedIn && <li><Link className="nav-link" to={`/drivers/${this.props.authenticatedUsername}`}>Drivers</Link></li>}
-                        
+                    {this.props.isUserLoggedIn && <li><Link className="nav-link" to="/drivers">Drivers</Link></li>}
+                    {this.props.isUserLoggedIn && <li><Link className="nav-link" to="/vehicles">Vehicles</Link></li>}
+                    {this.props.isUserLoggedIn && <li><Link className="nav-link" to="/routes">Routes</Link></li>}
                     </ul>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
                         {!this.props.isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}

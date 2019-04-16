@@ -7,6 +7,9 @@ import Logout from './Logout';
 import PageNotFound from './PageNotFound';
 import Header from './Header';
 import Drivers from './Drivers';
+import Driver from './Driver';
+import Vehicle from './Vehicle';
+import Vehicles from './Vehicles';
 
 class VfmApp extends Component {
   render() {
@@ -20,8 +23,12 @@ class VfmApp extends Component {
               <Route path="/login" component={Login} />
               <AuthenticatedRoute path="/logout" component={Logout} />
               <AuthenticatedRoute path="/dashboard/:name" component={Dashboard} />
-              <AuthenticatedRoute path="/drivers/:name" component={Drivers} />
+              <AuthenticatedRoute path="/drivers/:id" component={Driver} />
+              <AuthenticatedRoute path="/drivers" component={Drivers} />
+              <AuthenticatedRoute path="/vehicles/:id" component={Vehicle} />
+              <AuthenticatedRoute path="/vehicles" component={Vehicles} />
               
+
 
               <Route component={PageNotFound} />
 

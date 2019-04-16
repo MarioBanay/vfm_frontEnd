@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DriverDataService from '../api/driver/DriverDataService'
+import DriverDataService from '../api/dataService/DriverDataService.js'
 import AuthenticationService from './AuthenticationService.js'
 
 class Drivers extends Component {
@@ -7,64 +7,64 @@ class Drivers extends Component {
         super(props)
         this.state = {
             drivers: [],
+            message: null
         }
-        //this.deleteTodoClicked = this.deleteTodoClicked.bind(this)
-        //this.updateTodoClicked = this.updateTodoClicked.bind(this)
-        //this.addTodoClicked = this.addTodoClicked.bind(this)
-        this.refreshTodos = this.refreshTodos.bind(this)
+        this.deleteDriverClicked = this.deleteDriverClicked.bind(this)
+        this.updateDriverlicked = this.updateDriverClicked.bind(this)
+        this.addDriverClicked = this.addDriverClicked.bind(this)
+        this.refreshDrivers = this.refreshDrivers.bind(this)
     }
 
     componentDidMount() {
-        this.refreshTodos();
+        this.refreshDrivers();
     }
 
-    refreshTodos() {
+    refreshDrivers() {
         let username = AuthenticationService.getLoggedInUserName()
         DriverDataService.retrieveAllDrivers(username)
             .then(
                 response => {
-                    console.log(response);
                     this.setState({ drivers: response.data })
                 }
             )
     }
 
-    // deleteTodoClicked(id) {
-    //     let username = AuthenticationService.getLoggedInUserName()
-    //     //console.log(id + " " + username);
-    //     TodoDataService.deleteTodo(username, id)
-    //         .then(
-    //             response => {
-    //                 this.setState({ message: `Delete of todo ${id} Successful` })
-    //                 this.refreshTodos()
-    //             }
-    //         )
+    deleteDriverClicked(id) {
+        let username = AuthenticationService.getLoggedInUserName()
+        //console.log(id + " " + username);
+        DriverDataService.deleteDriver(username, id)
+            .then(
+                response => {
+                    this.setState({ message: `Delete of driver ${id} Successful` })
+                    this.refreshDrivers()
+                }
+            )
 
-    // }
+    }
 
-    // addTodoClicked() {
-    //     this.props.history.push(`/todos/-1`)
-    // }
+    addDriverClicked() {
+        this.props.history.push(`/drivers/-1`)
+    }
 
-    // updateTodoClicked(id) {
-    //     this.props.history.push(`/todos/${id}`)
-    // }
+    updateDriverClicked(id) {
+        this.props.history.push(`/drivers/${id}`)
+    }
 
     render() {
-        console.log('render')
         return (
             <div>
                 <h1>Drivers</h1>
                 <div className="container">
                     <div>
-                        <button className="btn btn-success m-3" onClick={this.addTodoClicked}>Add driver</button>
+                        <button className="btn btn-success m-3" onClick={this.addDriverClicked}>Add driver</button>
                         <br />
                     </div>
+                    {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
                     <table className="table">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Last Name?</th>
+                                <th>Last Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th></th>
@@ -81,8 +81,8 @@ class Drivers extends Component {
                                             <td>{driver.lastName}</td>
                                             <td>{driver.email}</td>
                                             <td>{driver.phone}</td>
-                                            <td><button className="btn btn-success" onClick={() => this.updateTodoClicked(driver.id)}>Update</button></td>
-                                            <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(driver.id)}>Delete</button></td>
+                                            <td><button className="btn btn-success" onClick={() => this.updateDriverClicked(driver.id)}>Edit</button></td>
+                                            <td><button className="btn btn-warning" onClick={() => this.deleteDriverClicked(driver.id)}>Delete</button></td>
                                         </tr>
                                 )
                             }
