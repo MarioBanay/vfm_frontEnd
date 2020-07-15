@@ -2,7 +2,7 @@
   "name": "vfm_frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://mariobanay.github.io/vfm_frontend",
+  "homepage": "https://mariobanay.github.io/vfm_frontend",
   "dependencies": {
     "axios": "^0.18.1",
     "bootstrap": "^4.5.0",
